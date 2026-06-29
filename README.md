@@ -17,6 +17,8 @@ convention.
     changes, fix until green.
   - `keep-readme-and-claudemd-current.md` - keep `README.md` / `CLAUDE.md` in
     sync after significant changes.
+  - `suggest-adr-for-architectural-decisions.md` - nudge to record an ADR when
+    a repo with `docs/` makes an architecturally significant decision.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
   Copy and adapt it when standing up docs for a project.
