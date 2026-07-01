@@ -15,6 +15,8 @@ convention.
     `.pre-commit-config.yaml`, gotchas).
   - `run-lint-and-tests-after-changes.md` - run lint/pre-commit + tests after
     changes, fix until green.
+  - `wait-for-code-review-before-committing.md` - finish and verify changes but
+    leave them in the working tree; commit only when the user explicitly says so.
   - `keep-readme-and-claudemd-current.md` - keep `README.md` / `CLAUDE.md` in
     sync after significant changes.
   - `suggest-adr-for-architectural-decisions.md` - nudge to record an ADR when
