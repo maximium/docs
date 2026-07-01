@@ -189,25 +189,24 @@ shared team config; keep personal overrides in `.claude/settings.local.json`
 {
   "permissions": {
     "allow": [
-      "Bash(make test)",
-      "Bash(make build)",
-      "Bash(make lint)",
-      "Bash(python -m pytest)",
-      "Bash(python -m pytest *)",
-      "Bash(pre-commit run)",
-      "Bash(pre-commit run *)",
-      "Bash(flake8)",
-      "Bash(flake8 *)",
-      "Bash(black)",
-      "Bash(black *)",
-      "Bash(isort)",
-      "Bash(isort *)",
-      "Bash(mypy)",
-      "Bash(mypy *)"
+      "Bash(make test:*)",
+      "Bash(make build:*)",
+      "Bash(make lint:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(pre-commit run:*)",
+      "Bash(flake8:*)",
+      "Bash(black:*)",
+      "Bash(isort:*)",
+      "Bash(mypy:*)"
     ]
   }
 }
 ```
+
+The `:*` suffix is a prefix match: `Bash(make test:*)` covers both the bare
+`make test` and any arguments after it, so one entry replaces the older
+`Bash(x)` + `Bash(x *)` pair (the space-glob form matches only when an argument
+follows, so it needs the bare entry alongside it).
 
 Caveat: a `settings.json` created mid-session is not hot-reloaded - open `/hooks`
 once or restart the session for new rules to apply.
