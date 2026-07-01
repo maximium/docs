@@ -10,6 +10,8 @@ convention.
 ## Contents
 
 - **[playbooks/](playbooks/)** - reusable playbooks / conventions:
+  - `000-template.md` - skeleton for a new playbook rule (the shared
+    title/lead/`Why`/`How` shape); copy it when adding one.
   - `python-docker-make-lint-test.md` - Docker-based test & lint via Make
     (multi-stage Dockerfile, Make targets, the `.githooks/pre-commit` hook,
     `.pre-commit-config.yaml`, gotchas).
