@@ -1,1 +1,4 @@
 .DS_Store
+
+# Personal Claude Code overrides (shared settings.json stays tracked)
+.claude/settings.local.json
