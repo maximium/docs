@@ -67,7 +67,7 @@ TEST_IMAGE := <project>-test
 LINT_IMAGE := <project>-lint
 PRECOMMIT_CACHE := $(shell pwd)/.pre-commit-cache
 
-.PHONY: build test lint setup-hooks
+.PHONY: build test lint lint-commit setup-hooks
 
 build:
 	DOCKER_BUILDKIT=1 docker build --target test -t $(TEST_IMAGE) .
@@ -94,6 +94,17 @@ lint: .lint-image
 		-w /app \
 		$(LINT_IMAGE) \
 		pre-commit run --all-files
+
+# Staged files only; what the git pre-commit hook runs in a legacy codebase
+# where `lint` (--all-files) is not green yet. Also faster as a hook.
+lint-commit: .lint-image
+	@mkdir -p $(PRECOMMIT_CACHE)
+	docker run --rm \
+		-v $(shell pwd):/app \
+		-v $(PRECOMMIT_CACHE):/root/.cache/pre-commit \
+		-w /app \
+		$(LINT_IMAGE) \
+		pre-commit run
 ```
 
 Notes:
@@ -116,6 +127,10 @@ calls `make lint` (which runs pre-commit inside Docker), and point git at it via
 #!/bin/sh
 make lint
 ```
+
+In a greenfield project the hook runs the full `make lint` sweep. In a legacy
+codebase point it at `make lint-commit` (staged files only) instead, so commits
+are not blocked by pre-existing debt; see the gotcha below.
 
 Activate once after cloning with `make setup-hooks` (target above). Because the
 hook lives in a tracked `.githooks/` dir (not `.git/hooks/`), it travels with
@@ -224,6 +239,15 @@ test:
 
 ## Lessons / gotchas
 
+- **Legacy codebase adoption:** point the hook at the staged-only target
+  (`pre-commit run` without `--all-files`) so commits are not blocked by
+  pre-existing debt, and freeze the debt itself (a phpstan/mypy baseline or
+  equivalent) so the full `make lint` sweep is green in CI. Shrink the baseline
+  over time; never add to it.
+- **`pre-commit run` (staged mode) refuses to work while
+  `.pre-commit-config.yaml` itself has unstaged changes** ("Your pre-commit
+  configuration is unstaged"); `--all-files` does not care. Surfaces on the
+  first commit after editing the config; staging the config fixes it.
 - **slim vs alpine:** default to `-slim` (glibc). Alpine's base is smaller, but
   its musl libc can't use the common `manylinux` (glibc) wheels, so pip may fall
   back to building C extensions from source - slower, needs a build toolchain,
