@@ -75,8 +75,8 @@ build:
 test: build
 	docker run --rm $(TEST_IMAGE)
 
-# Run once after cloning: enable the pre-commit hook (runs `make lint` in
-# Docker on every commit). See ".githooks/pre-commit" below.
+# Run once after cloning: enable the pre-commit hook (runs `make lint-commit`
+# in Docker on every commit). See ".githooks/pre-commit" below.
 setup-hooks:
 	git config core.hooksPath .githooks
 	chmod +x .githooks/pre-commit
@@ -95,8 +95,8 @@ lint: .lint-image
 		$(LINT_IMAGE) \
 		pre-commit run --all-files
 
-# Staged files only; what the git pre-commit hook runs in a legacy codebase
-# where `lint` (--all-files) is not green yet. Also faster as a hook.
+# Staged files only; what the git pre-commit hook runs. The full `lint` sweep
+# stays for CI and for verifying changes after editing.
 lint-commit: .lint-image
 	@mkdir -p $(PRECOMMIT_CACHE)
 	docker run --rm \
@@ -125,12 +125,18 @@ calls `make lint` (which runs pre-commit inside Docker), and point git at it via
 ```sh
 # .githooks/pre-commit  (chmod +x, tracked in the repo)
 #!/bin/sh
-make lint
+make lint-commit
 ```
 
-In a greenfield project the hook runs the full `make lint` sweep. In a legacy
-codebase point it at `make lint-commit` (staged files only) instead, so commits
-are not blocked by pre-existing debt; see the gotcha below.
+The hook checks the commit, not the world: it lints staged files only. Failing
+a commit over debt in untouched files teaches people to reach for
+`--no-verify`, and a full sweep in the hook gets slower as the repo grows. The
+full `make lint` sweep still has to live somewhere, because staged-only runs
+miss cross-file fallout (a changed signature breaks callers in files that are
+not staged) and config changes that affect every file. That somewhere is CI
+(job below) and the after-changes verification an agent runs; note that
+staged-only checks nothing for unstaged edits, so agents verifying their own
+work need `make lint` or `pre-commit run --files <paths>`.
 
 Activate once after cloning with `make setup-hooks` (target above). Because the
 hook lives in a tracked `.githooks/` dir (not `.git/hooks/`), it travels with
@@ -235,15 +241,29 @@ test:
   script:
     - pip install .[test]
     - python -m pytest tests/ -v
+
+# The full --all-files sweep lives here, complementing the staged-only hook.
+lint:
+  stage: test
+  image: python:3.14-slim
+  variables:
+    PRE_COMMIT_HOME: $CI_PROJECT_DIR/.pre-commit-cache
+  cache:
+    key: lint
+    paths:
+      - .pre-commit-cache/
+  script:
+    - apt-get update && apt-get install -y --no-install-recommends git
+    - pip install pre-commit
+    - pre-commit run --all-files
 ```
 
 ## Lessons / gotchas
 
-- **Legacy codebase adoption:** point the hook at the staged-only target
-  (`pre-commit run` without `--all-files`) so commits are not blocked by
-  pre-existing debt, and freeze the debt itself (a phpstan/mypy baseline or
-  equivalent) so the full `make lint` sweep is green in CI. Shrink the baseline
-  over time; never add to it.
+- **Legacy codebase adoption:** freeze the pre-existing debt (a phpstan/mypy
+  baseline or equivalent) so the full `make lint` sweep is green in CI from
+  day one. Shrink the baseline over time; never add to it. The staged-only
+  hook needs no special treatment, that is its normal mode.
 - **`pre-commit run` (staged mode) refuses to work while
   `.pre-commit-config.yaml` itself has unstaged changes** ("Your pre-commit
   configuration is unstaged"); `--all-files` does not care. Surfaces on the
