@@ -2,7 +2,7 @@
 
 Engineering documentation for {Project}: {one-sentence description of what the project does}.
 
-This repository holds reference docs, architecture decisions, and operational runbooks. Runnable code lives in sibling repositories.
+{Standalone docs repo: "This repository holds reference docs, architecture decisions, and operational runbooks. Runnable code lives in sibling repositories." | In-project docs/: "This directory holds the project's reference docs, architecture decisions, and operational runbooks."}
 
 ## Contents
 

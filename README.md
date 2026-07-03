@@ -25,7 +25,9 @@ convention.
     a repo with `docs/` makes an architecturally significant decision.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
-  Copy and adapt it when standing up docs for a project.
+  Copy and adapt it when standing up docs for a project. Works both as a
+  standalone docs repository (e.g. for a group of microservices) and as an
+  in-project `docs/` directory.
 
 ## Usage
 
