@@ -23,6 +23,9 @@ convention.
     sync after significant changes.
   - `suggest-adr-for-architectural-decisions.md` - nudge to record an ADR when
     a repo with `docs/` makes an architecturally significant decision.
+  - `run-commands-through-direnv.md` - if the dir (or a parent) has `.envrc`,
+    run project commands via `direnv exec <dir> <cmd>` instead of bare tools
+    or re-evaluating the environment.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
   Copy and adapt it when standing up docs for a project. Works both as a
