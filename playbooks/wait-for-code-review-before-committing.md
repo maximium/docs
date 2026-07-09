@@ -27,6 +27,11 @@ into one commit and invent commit messages the user never approved.
 4. **When told to commit, follow the repo's conventions.** Branch first if you
    are on the default branch, honour any commit-message trailer or format the
    project uses, and push only if asked.
+5. **Keep the commit message lean.** Short imperative subject matching the
+   repo's `git log --oneline` style; add a body only when the main change
+   needs its "why" explained, in one or two sentences. Never recount side
+   changes (README, comments, renames) - the diff already shows them; if a
+   side change deserves explaining, it deserves its own commit.
 
 ## Notes
 
