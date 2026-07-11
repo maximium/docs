@@ -27,6 +27,10 @@ convention.
   - `run-commands-through-direnv.md` - if the dir (or a parent) has `.envrc`,
     run project commands via `direnv exec <dir> <cmd>` instead of bare tools
     or re-evaluating the environment.
+  - `prepare-prod-commands-for-the-user.md` - never mutate production
+    yourself: prepare exact commands/scripts and let the user execute them;
+    read-only diagnostics only while the user hasn't taken over the
+    connections.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
   Copy and adapt it when standing up docs for a project. Works both as a
