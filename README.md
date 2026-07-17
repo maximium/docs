@@ -31,6 +31,16 @@ convention.
     yourself: prepare exact commands/scripts and let the user execute them;
     read-only diagnostics only while the user hasn't taken over the
     connections.
+  - `new-project-interview-prompt.md` - prompt template for kicking off a new
+    app project: feature list, then a structured requirements interview
+    (product / FURPS quality attributes / tech / hard constraints), then a
+    plan with runnable delivery stages gated on approval.
+- **[skills/](skills/)** - Claude Code skills kept under version control here
+  and symlinked into `~/.claude/skills/` (install on a new machine with
+  `ln -s "$(pwd)/skills/<name>" ~/.claude/skills/<name>` from the repo root):
+  - `new-project/` - `/new-project` slash command: structured requirements
+    interview per `playbooks/new-project-interview-prompt.md`, then a plan
+    with delivery stages, then project setup from the scaffolds in this repo.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
   Copy and adapt it when standing up docs for a project. Works both as a
