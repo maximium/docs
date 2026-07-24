@@ -156,6 +156,8 @@ repos:
     hooks:
       - id: check-yaml
       - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
   - repo: https://github.com/psf/black
     rev: 26.5.1
     hooks:
@@ -181,7 +183,20 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [pydantic, types-PyMySQL]  # match your typed deps
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.49.1
+    hooks:
+      - id: markdownlint
 ```
+
+`markdownlint` runs on stock defaults (no `.markdownlint.yaml`), which enforces
+an 80-column line length (`MD013`) among the full rule set. Long unbreakable
+lines such as bare URLs are exempt because there is no whitespace past the limit
+to wrap on. `end-of-file-fixer` and `trailing-whitespace` are auto-fixing, so
+they rarely need attention. Note that on a repo with existing Markdown, turning
+the stock rule set on will flag pre-existing files the first time they are
+touched (or all at once under `pre-commit run --all-files`); clean them up as
+you go rather than all up front.
 
 ## .gitignore
 
@@ -260,6 +275,13 @@ lint:
 
 ## Lessons / gotchas
 
+- **Name the Compose file `compose.yaml`, not `docker-compose.yaml`.** That is
+  the Compose Specification's canonical name; `docker-compose.yaml` is the
+  legacy form (`docker compose` still auto-discovers both). New projects use
+  `compose.yaml`, including in subdirs like `tests/integration/compose.yaml`.
+  Update anything that hard-codes the name: `.dockerignore` globs (`compose*`),
+  Makefile `COMPOSE_*` variables, and docs. Plain `docker compose ...` commands
+  need no change, since discovery covers both names.
 - **Legacy codebase adoption:** freeze the pre-existing debt (a phpstan/mypy
   baseline or equivalent) so the full `make lint` sweep is green in CI from
   day one. Shrink the baseline over time; never add to it. The staged-only
