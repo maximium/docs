@@ -22,15 +22,25 @@ closed. Treat "green lint + green tests" as the definition of done.
    docformatter, prettier) rewrite files on the first run and exit non-zero.
    Let them write, then **re-run until the run is clean** - a non-zero exit with
    "files were modified" is expected on the first pass, not a failure to report.
-3. **Run the tests** after code changes and confirm they pass.
+3. **Run the tests** after changes that can affect behavior and confirm they
+   pass. A docs-only, comment-only, or docstring-only change cannot affect
+   behavior, so skip the test suite for it (and say so), but still run lint on
+   it (see below).
 4. **Report honestly.** State the lint and test results, including any failures
    you could not fix. Done means both are green; if they are not, say so plainly
    rather than implying success.
 
 ## When to skip
 
-Only when the repo has no lint/test tooling, or the change is docs-only with no
-configured checks for those files (e.g. markdown with no markdown hook). Say so
+Skip the **tests** for a docs-only, comment-only, or docstring-only change: it
+cannot alter behavior, so the suite has nothing to catch. Still run **lint** on
+such changes. Formatters and prose linters (black, docformatter, markdownlint,
+flake8 line length) flag real issues in docs and docstrings (wrapping, line
+length, style), so lint earns its keep there even when tests do not. Only skip
+lint too when no lint tooling touches the changed files (e.g. markdown with no
+markdown hook).
+
+Skip both only when the repo has no lint/test tooling at all. Either way, say so
 explicitly instead of silently skipping.
 
 ## Gotcha: hook version conflicts (black ↔ docformatter)
