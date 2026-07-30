@@ -13,7 +13,8 @@ convention.
   - `000-template.md` - skeleton for a new playbook rule (the shared
     title/lead/`Why`/`How` shape); copy it when adding one.
   - `python-docker-make-lint-test.md` - Docker-based test & lint via Make
-    (multi-stage Dockerfile, Make targets, the `.githooks/pre-commit` hook,
+    (multi-stage Dockerfile, Make targets, the `.githooks/pre-commit` hook
+    plus the `make setup-hooks` activation the agent runs itself,
     `.pre-commit-config.yaml`, gotchas).
   - `run-lint-and-tests-after-changes.md` - run lint/pre-commit + tests after
     changes, fix until green.

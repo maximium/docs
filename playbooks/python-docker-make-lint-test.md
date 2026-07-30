@@ -138,11 +138,24 @@ not staged) and config changes that affect every file. That somewhere is CI
 staged-only checks nothing for unstaged edits, so agents verifying their own
 work need `make lint` or `pre-commit run --files <paths>`.
 
-Activate once after cloning with `make setup-hooks` (target above). Because the
-hook lives in a tracked `.githooks/` dir (not `.git/hooks/`), it travels with
-the repo; each clone only needs the one-time `make setup-hooks`. Document that
-command in the project README's setup steps so it is not forgotten - a missing
-hook means lint silently never runs on commit.
+Shipping the hook is not the same as activating it. The hook lives in a tracked
+`.githooks/` dir (not `.git/hooks/`), so it travels with the repo, but git
+ignores it until `core.hooksPath` points there. Activation is therefore a
+per-clone step, and it is easy to forget: a missing hook means lint silently
+never runs on commit.
+
+**Agent instruction.** Trigger: the repo has a `.pre-commit-config.yaml` (in a
+new project, right after you write it). Then make the hook real in one go: add
+`.githooks/pre-commit` and the `setup-hooks` target if they are missing, and
+run `make setup-hooks` yourself, do not just mention it. The target is
+idempotent, so run it rather than checking first. Success check:
+`git config core.hooksPath` prints `.githooks`. Run it without asking for
+permission: it only writes repo-local git config, and
+`git config --unset core.hooksPath` undoes it. That is permission to run the
+target, not to commit: the new `.githooks/pre-commit` and Makefile target are
+ordinary working-tree changes and wait for review like any other edit. Put the
+command in the project README's setup steps as well. The one case to ask about
+instead of acting: the repo already wires pre-commit up some other way.
 
 ## .pre-commit-config.yaml
 
