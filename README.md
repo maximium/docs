@@ -18,6 +18,10 @@ convention.
     `.pre-commit-config.yaml`, gotchas).
   - `run-lint-and-tests-after-changes.md` - run lint/pre-commit + tests after
     changes, fix until green.
+  - `keep-test-names-short.md` - test names carry the distinguishing facts
+    only (no articles, no "is/are", a noun instead of a verb, nothing the file
+    already says), and test-local fakes take plain class names without a
+    leading underscore.
   - `wait-for-code-review-before-committing.md` - finish and verify changes but
     leave them in the working tree; commit only when the user explicitly says
     so, with a lean commit message.
