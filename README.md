@@ -1,5 +1,7 @@
 # Docs
 
+[![Lint](https://github.com/maximium/docs/actions/workflows/lint.yml/badge.svg)](https://github.com/maximium/docs/actions/workflows/lint.yml)
+
 Playbooks and conventions I use across my projects, written down as
 read-and-adapt templates instead of remembered.
 
