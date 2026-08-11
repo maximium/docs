@@ -1,10 +1,10 @@
 # Playbook template
 
 Skeleton for a **playbook rule**: a reusable, cross-project instruction that
-tells an AI agent (or a human) how to behave in some situation. Copy everything
-below the `---` into a new `playbooks/<kebab-case-name>.md`, fill the
-placeholders, then delete the placeholder hints. Add the new file to the index
-in the repo's top-level `README.md`.
+tells an AI agent (or a human) how to behave in some situation. Copy the block
+below into a new `playbooks/<kebab-case-name>.md`, fill the placeholders, then
+delete the placeholder hints. Add the new file to the index in the repo's
+top-level `README.md`.
 
 ## What this template is for
 
@@ -27,8 +27,9 @@ files, Dockerfiles, Make targets) organized by artifact, and it tends to open
 with `## Philosophy` rather than `## Why`. Do not force a recipe into the rule
 shape, and do not force a rule into the recipe shape.
 
----
+## The skeleton
 
+```markdown
 # <Title in the imperative>
 
 Reusable instruction for AI agents working in <where it applies: "any
@@ -52,3 +53,4 @@ the rule.>
 <Optional. When the rule does not apply, and the instruction to say so
 explicitly rather than skip silently. Drop this section if there is no
 meaningful skip case.>
+```

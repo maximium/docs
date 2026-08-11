@@ -108,6 +108,7 @@ lint-commit: .lint-image
 ```
 
 Notes:
+
 - The `.lint-image` sentinel skips rebuilds unless the Dockerfile changes;
   hook versions are handled by pre-commit at run time (no rebuild needed).
 - `$(PRECOMMIT_CACHE)` persists hook environments between runs (first run is

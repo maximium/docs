@@ -1,0 +1,6 @@
+# Make requires literal tabs to indent recipe lines, so tabs inside
+# makefile-tagged code blocks are valid syntax, not a style violation.
+# MD010 stays active everywhere else.
+MD010:
+  ignore_code_languages:
+    - makefile
