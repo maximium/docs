@@ -27,8 +27,9 @@ convention.
   - `wait-for-code-review-before-committing.md` - finish and verify changes but
     leave them in the working tree; commit only when the user explicitly says
     so, with a lean commit message.
-  - `keep-readme-and-claudemd-current.md` - keep `README.md` / `CLAUDE.md` in
-    sync after significant changes.
+  - `keep-readme-and-agentsmd-current.md` - keep `README.md` / `AGENTS.md` in
+    sync after significant changes, with the thin tool-specific pointer
+    (`CLAUDE.md`) reviewed alongside them.
   - `suggest-adr-for-architectural-decisions.md` - nudge to record an ADR when
     a repo with `docs/` makes an architecturally significant decision.
   - `run-commands-through-direnv.md` - if the dir (or a parent) has `.envrc`,
@@ -42,12 +43,22 @@ convention.
     app project: feature list, then a structured requirements interview
     (product / FURPS quality attributes / tech / hard constraints), then a
     plan with runnable delivery stages gated on approval.
+  - `agents-md-structure.md` - how to write a project's `AGENTS.md`, the
+    tool-neutral map every coding agent reads: the six sections, a soft
+    150-line budget, tool-specific files (`CLAUDE.md` and friends) kept to
+    a thin pointer, deeper topics pushed into `docs/` and indexed from the
+    map, references by filename and symbol instead of code snippets, plus
+    the verification steps.
 - **[skills/](skills/)** - Claude Code skills kept under version control here
   and symlinked into `~/.claude/skills/` (install on a new machine with
   `ln -s "$(pwd)/skills/<name>" ~/.claude/skills/<name>` from the repo root):
   - `new-project/` - `/new-project` slash command: structured requirements
     interview per `playbooks/new-project-interview-prompt.md`, then a plan
     with delivery stages, then project setup from the scaffolds in this repo.
+  - `agents-md/` - `/agents-md` slash command: write or restructure a
+    repository's `AGENTS.md` (plus any thin tool-specific file such as
+    `CLAUDE.md`) per `playbooks/agents-md-structure.md`, then report the
+    line count and the lint result without committing.
 - **[docs-template/](docs-template/)** - scaffold for a project's engineering
   docs: `architecture.md`, `adr/` (Architecture Decision Records), `runbooks/`.
   Copy and adapt it when standing up docs for a project. Works both as a
