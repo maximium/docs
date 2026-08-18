@@ -2,7 +2,8 @@
 
 Reusable instruction for AI agents working in any repository. Making a change is
 not the same as committing it. After you finish edits (and run lint / tests per
-`run-lint-and-tests-after-changes.md`), stop at a clean working tree and wait.
+[run-lint-and-tests-after-changes.md](run-lint-and-tests-after-changes.md)),
+stop at a clean working tree and wait.
 Do not run `git commit` (or `git push`) on your own initiative. Commit only when
 the user has reviewed the change and explicitly tells you to.
 
@@ -18,7 +19,8 @@ into one commit and invent commit messages the user never approved.
 ## How
 
 1. **Finish the change and verify it.** Apply the edits, run lint / pre-commit
-   and tests, and get them green (see `run-lint-and-tests-after-changes.md`).
+   and tests, and get them green (see
+   [run-lint-and-tests-after-changes.md](run-lint-and-tests-after-changes.md)).
 2. **Stop at the working tree.** Report what you changed and the lint / test
    result. Do not stage or commit.
 3. **Wait for an explicit go-ahead.** Only commit after the user says so in
