@@ -30,6 +30,9 @@ convention.
   - `wait-for-code-review-before-committing.md` - finish and verify changes but
     leave them in the working tree; commit only when the user explicitly says
     so, with a lean commit message.
+  - `batch-releases-through-branch.md` - where a merge into the
+    default branch deploys, collect several tasks in a short-lived
+    `release/<date>` branch and merge it once.
   - `keep-readme-and-agentsmd-current.md` - keep `README.md` / `AGENTS.md` in
     sync after significant changes, with the thin tool-specific pointer
     (`CLAUDE.md`) reviewed alongside them.
