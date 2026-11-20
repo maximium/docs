@@ -24,6 +24,9 @@ convention.
     only (no articles, no "is/are", a noun instead of a verb, nothing the file
     already says), and test-local fakes take plain class names without a
     leading underscore.
+  - `comment-what-code-cannot-say.md` - a comment or docstring answers only
+    what the code leaves open ("why this way"): no restated signature, no
+    retold ADR, no repeated fact, no history of the change.
   - `wait-for-code-review-before-committing.md` - finish and verify changes but
     leave them in the working tree; commit only when the user explicitly says
     so, with a lean commit message.
