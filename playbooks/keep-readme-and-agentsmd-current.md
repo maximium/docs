@@ -1,11 +1,10 @@
 # Keep README.md and AGENTS.md current
 
-Reusable instruction for AI agents (and humans) working in a repository that has
-a `README.md` (contributor-facing) and an `AGENTS.md` (agent-facing map of the
-codebase, read by every coding agent). After any **significant change**, review
-both files and update them so they stay accurate. State this expectation
-directly in the project's `AGENTS.md` so it travels with the repo, and treat any
-thin tool-specific pointer (`CLAUDE.md` and friends, per
+In a repository with a `README.md` (contributor-facing) and an `AGENTS.md`
+(agent-facing map of the codebase, read by every coding agent), review both
+files after any **significant change** and update them so they stay accurate.
+State this expectation directly in the project's `AGENTS.md` so it travels with
+the repo, and treat any thin tool-specific pointer (`CLAUDE.md` and friends, per
 [agents-md-structure.md](agents-md-structure.md)) as part of the same review.
 
 ## Why

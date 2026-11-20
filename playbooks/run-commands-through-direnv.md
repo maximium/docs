@@ -1,9 +1,8 @@
 # Run commands through direnv when .envrc is present
 
-Reusable instruction for AI agents working in any repository where the
-directory or one of its parents contains a `.envrc` file. The project's
-toolchain (compilers, interpreters, CLIs) comes from that direnv
-environment; run project commands as `direnv exec <dir-with-envrc> <cmd>`
+When the repository directory or one of its parents contains a `.envrc`
+file, the project's toolchain (compilers, interpreters, CLIs) comes from that
+direnv environment; run project commands as `direnv exec <dir-with-envrc> <cmd>`
 instead of calling the tools bare or recreating the environment by hand.
 
 ## Why

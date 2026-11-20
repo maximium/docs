@@ -11,8 +11,8 @@ top-level `README.md`.
 The rule playbooks in this directory share one shape, and this file fixes it:
 
 - `# Title` in the imperative ("Keep README current", "Wait for code review").
-- A lead paragraph that opens with "Reusable instruction for AI agents working
-  in ..." and, in one or two sentences, states the rule and where it applies.
+- A lead paragraph that, in one or two sentences, states the rule and where it
+  applies (no "Reusable instruction for AI agents" preamble).
 - `## Why`, the rationale (why the rule earns its keep, not just what it is).
 - `## How`, the concrete steps, usually a numbered list with a **bold lead** per
   step.
@@ -32,9 +32,8 @@ shape, and do not force a rule into the recipe shape.
 ```markdown
 # <Title in the imperative>
 
-Reusable instruction for AI agents working in <where it applies: "any
-repository", "a repository with a `docs/` directory", etc.>. <One or two
-sentences: what the rule is and what to do.>
+<One or two sentences: what the rule is and what to do, with where it applies
+only when that is narrower than "any repository".>
 
 ## Why
 

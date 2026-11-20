@@ -1,10 +1,9 @@
 # Suggest an ADR for architectural decisions
 
-Reusable instruction for AI agents working in a repository that keeps
-engineering docs in the `docs-template` spirit: a `docs/` directory inside the
-project, or a standalone docs repository for a group of services, containing
-any subset of `architecture.md`, `adr/`, `runbooks/`. The full trio is not
-required.
+Applies to a repository that keeps engineering docs in the `docs-template`
+spirit: a `docs/` directory inside the project, or a standalone docs repository
+for a group of services, containing any subset of `architecture.md`, `adr/`,
+`runbooks/`. The full trio is not required.
 
 When a change embodies an **architecturally significant decision** (one that
 constrains future work, reverses an earlier decision, or is non-obvious enough

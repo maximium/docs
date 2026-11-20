@@ -1,11 +1,10 @@
 # Prepare production commands, let the user run them
 
-Reusable instruction for AI agents working in any project whose workflow can
-reach live systems (SSH to production hosts, Swarm/k8s services, message
-brokers, production databases, deploy tooling). Anything that mutates
-production state is prepared as an exact, copy-pasteable command or script
-and handed to the user to execute; the agent does not run it itself, even
-when the user asked for the outcome.
+In any project whose workflow can reach live systems (SSH to production hosts,
+Swarm/k8s services, message brokers, production databases, deploy tooling),
+anything that mutates production state is prepared as an exact,
+copy-pasteable command or script and handed to the user to execute; the agent
+does not run it itself, even when the user asked for the outcome.
 
 ## Why
 

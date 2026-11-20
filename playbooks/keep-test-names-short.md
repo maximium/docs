@@ -1,10 +1,9 @@
 # Keep test names short
 
-Reusable instruction for AI agents working in any repository with an automated
-test suite. A test name carries the facts that distinguish this test from its
-neighbours and nothing else: no articles, no "is/are/does", no verb a noun can
-carry, no word the file already says. Test-local helper classes take plain
-names, without a leading underscore.
+A test name carries the facts that distinguish this test from its neighbours
+and nothing else: no articles, no "is/are/does", no verb a noun can carry, no
+word the file already says. Test-local helper classes take plain names,
+without a leading underscore.
 
 ## Why
 

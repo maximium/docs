@@ -1,9 +1,9 @@
 # Run lint / pre-commit and tests after changes
 
-Reusable instruction for AI agents working in any repository. After making code
-changes, run the project's lint / pre-commit checks **and** its test suite
-yourself, fix whatever they report, and only then tell the user the work is
-done. The user should not have to run lint, pre-commit, or tests manually.
+After making code changes, run the project's lint / pre-commit checks **and**
+its test suite yourself, fix whatever they report, and only then tell the user
+the work is done. The user should not have to run lint, pre-commit, or tests
+manually.
 
 ## Why
 

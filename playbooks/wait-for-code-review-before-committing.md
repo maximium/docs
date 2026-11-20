@@ -1,7 +1,7 @@
 # Wait for code review before committing
 
-Reusable instruction for AI agents working in any repository. Making a change is
-not the same as committing it. After you finish edits (and run lint / tests per
+Making a change is not the same as committing it. After you finish edits (and
+run lint / tests per
 [run-lint-and-tests-after-changes.md](run-lint-and-tests-after-changes.md)),
 stop at a clean working tree and wait.
 Do not run `git commit` (or `git push`) on your own initiative. Commit only when

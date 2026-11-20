@@ -1,9 +1,8 @@
 # Comment only what the code cannot say
 
-Reusable instruction for AI agents working in any repository. A comment or
-docstring answers a question the code leaves open, almost always "why this
-way". Do not repeat what the code, a linked ADR, or a nearby docstring already
-says, and write the shortest version that still answers.
+A comment or docstring answers a question the code leaves open, almost always
+"why this way". Do not repeat what the code, a linked ADR, or a nearby
+docstring already says, and write the shortest version that still answers.
 
 ## Why
 
