@@ -44,7 +44,10 @@ A release branch lives for one release, so none of this accumulates.
    branch into it before opening its MR.
 5. **Ship with one MR from the release branch into the default branch.**
    Squash is safe, since the release branch is deleted afterward. Delete it
-   and the merged task branches once the pipeline is green.
+   and the merged task branches once the pipeline is green. Its description
+   repeats `Closes #N` for every task it ships: GitLab and GitHub apply
+   closing keywords only on MRs into the default branch, so the one in a task
+   MR does nothing, and a bare `(#N)` only links.
 
 ## When to skip
 
